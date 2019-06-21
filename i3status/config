@@ -15,27 +15,46 @@ general {
 }
 
 order += "volume master"
-order += "disk /"
+order += "battery 0"
 order += "ethernet _first_"
+order += "wireless _first_"
+order += "tztime local2"
 order += "tztime local"
 
 ethernet _first_ {
-        format_up = " E: %ip "
-        format_down = " E: down "
+        format_up = " Kabel podłączony "
+        format_down = " Kabel odłączony "
+}
+
+wireless _first_ {
+	format_up = " WiFi %essid %quality "
+	format_down = " WiFi rozłączono "
 }
 
 tztime local {
-        format = " %d-%m-%Y %H:%M:%S "
+        format = " %H:%M:%S "
 }
 
-disk "/" {
-        format = " %used/%total (%percentage_used)"
+tztime local2 {
+	format = " %d-%m-%Y "
 }
 
 volume master {
-        format = "V: %volume"
-        format_muted = "V: muted (%volume)"
+        format = " Dźwięk %volume "
+        format_muted = " Dźwięk wyciszony (%volume) "
         device = "default"
         mixer = "Master"
         mixer_idx = 0
+}
+
+battery 0 {
+	format = " %status %percentage "
+	format_down = "Nie ma bateri"
+	status_chr = "Ładowanie"
+	status_bat = "Bateria"
+	status_unk = "Ładowanie"
+	status_full =  "Naładowana"
+	path = "/sys/class/power_supply/BAT0/uevent"
+	low_threshold = 15
+	last_full_capacity = true
 }

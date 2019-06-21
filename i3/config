@@ -186,9 +186,6 @@ bar {
 for_window [class="^.*"] border pixel 5
 gaps inner 20
 
-# Background
-exec --no-startup-id xsetroot -solid "#1c2023"
-
 # Colors
 client.focused          #747C84	#747C84	#747C84	#747C84	#747C84
 client.focused_inactive #1c2023	#1c2023	#1c2023	#1c2023	#1c2023
@@ -197,7 +194,27 @@ client.urgent           #1c2023	#1c2023	#1c2023	#1c2023	#1c2023
 client.placeholder      #1c2023	#1c2023	#1c2023	#1c2023	#1c2023
 
 # Volume
-bindsym XF86AudioMute exec amixer set Master toggle
+bindsym XF86AudioMute exec amixer set Master toggle; exec amixer set Headphone unmute; exec amixer set Speaker unmute
+bindsym XF86AudioMicMute exec amixer set Capture toggle
 bindsym XF86AudioRaiseVolume exec amixer set Master 5%+
 bindsym XF86AudioLowerVolume exec amixer set Master 5%-
 
+# Backlit
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+
+# Touchpad
+exec synclient TouchpadOff=1
+
+# compton 
+exec compton --config .config/compton/compton.conf
+
+# Background
+exec feh --bg-scale Obrazy/conifer-desktop-wallpaper-fog-1287075.jpg
+
+# Keymap
+exec setxkbmap pl
+
+# Lockscreen
+bindsym XF86ScreenSaver exec i3lock-fancy -p -- scrot -z
+exec --no-startup-id xss-lock -- i3lock-fancy -p -- scrot -z
