@@ -1,3 +1,3 @@
-i3gaps | dmenu | compton | termite
+i3gaps | compton | termite
 
 ![scrot.jpeg](scrot.jpeg)
