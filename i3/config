@@ -207,10 +207,11 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 exec synclient TouchpadOff=1
 
 # compton 
-exec compton --config .config/compton/compton.conf
+exec compton --config /home/patryk/.config/compton/compton.conf
+bindsym XF86Display exec killall -9 compton && compton --config /home/patryk/.config/compton/compton.conf && feh --bg-scale /home/patryk/Obrazy/wallp.jpg
 
 # Background
-exec feh --bg-scale Obrazy/conifer-desktop-wallpaper-fog-1287075.jpg
+exec feh --bg-scale Obrazy/wallp.jpg
 
 # Keymap
 exec setxkbmap pl
@@ -218,3 +219,7 @@ exec setxkbmap pl
 # Lockscreen
 bindsym XF86ScreenSaver exec i3lock-fancy -p -- scrot -z
 exec --no-startup-id xss-lock -- i3lock-fancy -p -- scrot -z
+
+# Screen layout
+bindsym $mod+u exec ./.screenlayout/top.sh
+bindsym $mod+i exec ./.screenlayout/single.sh
