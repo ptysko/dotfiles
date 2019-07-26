@@ -221,5 +221,5 @@ bindsym XF86ScreenSaver exec i3lock-fancy -p -- scrot -z
 exec --no-startup-id xss-lock -- i3lock-fancy -p -- scrot -z
 
 # Screen layout
-bindsym $mod+u exec ./.screenlayout/top.sh
-bindsym $mod+i exec ./.screenlayout/single.sh
+bindsym $mod+u exec ./.config/screenlayout/top.sh
+bindsym $mod+i exec ./.config/screenlayout/single.sh
