@@ -20,3 +20,8 @@ alias ls="ls --color"
 alias ll="ls -l"
 alias la="ls -la"
 alias syu="sudo pacman -Syu"
+alias s="sudo pacman -S"
+
+# prompt theme
+autoload -U colors && colors
+PROMPT='%F{cyan}%2~ %F{blue}%# %f'
