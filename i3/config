@@ -13,35 +13,45 @@ set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-#font pango:monospace 8
+# font pango:monospace 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 10
+font pango:DejaVu Sans Mono 9
 
-# Before i3 v4.8, we used to recommend this one as the default:
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
+# The combination of xss-lock, nm-applet and pactl is a popular choice, so
+# they are included here as an example. Modify as you see fit.
+
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+exec --no-startup-id nm-applet
+
+# Use pactl to adjust volume in PulseAudio.
+# set $refresh_i3status killall -SIGUSR1 i3status
+# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+# bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
-bindsym $mod+d exec --no-startup-id dmenu_run -i -nb '#1c2023' -nf '#747C84' -sb '#1c2023' -sf '#ffffff' -fn 'NotoMonoRegular:pixelsize=14'
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop -i -nb '#1c2023' -nf '#747C84' -sb '#1c2023' -sf '#ffffff' -fn 'DejaVu:Sans:Mono:pixelsize=14'
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+j focus left
@@ -107,28 +117,28 @@ set $ws9 "9"
 set $ws10 "10"
 
 # switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -169,57 +179,58 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 	position top
-	    colors {
-		background #1c2023
-		statusline #c7ccd1
-		separator #c7ccd1
+	tray_output primary
+	colors {
+		background #2e3440
+		statusline #d8dee9
+		separator #d8dee9
 
-		focused_workspace  #1c2023 #1c2023 #ffffff
-		active_workspace   #1c2023 #1c2023 #747C84
-		inactive_workspace #1c2023 #1c2023 #747C84
-		urgent_workspace   #1c2023 #1c2023 #747C84
-		binding_mode       #1c2023 #1c2023 #747C84
-	    }
+		focused_workspace	#4c566a #4c566a #d8dee9
+		active_workspace	#4c566a #4c566a #d8dee9
+		inactive_workspace	#2e3440 #2e3440 #d8dee9
+		urgent_workspace	#ebcb8b #ebcb8b #2e3440
+		binding_mode 		#5e81ac #5e81ac #2e3440
+	}
 }
 
 # Gaps
-for_window [class="^.*"] border pixel 5
-gaps inner 20
+for_window [class="^.*"] border pixel 3
+gaps inner 10
 
 # Colors
-client.focused          #747C84	#747C84	#747C84	#747C84	#747C84
-client.focused_inactive #1c2023	#1c2023	#1c2023	#1c2023	#1c2023
-client.unfocused        #1c2023	#1c2023	#1c2023	#1c2023	#1c2023
-client.urgent           #1c2023	#1c2023	#1c2023	#1c2023	#1c2023
-client.placeholder      #1c2023	#1c2023	#1c2023	#1c2023	#1c2023
-
-# Volume
-bindsym XF86AudioMute exec amixer set Master toggle; exec amixer set Headphone unmute; exec amixer set Speaker unmute
-bindsym XF86AudioMicMute exec amixer set Capture toggle
-bindsym XF86AudioRaiseVolume exec amixer set Master 5%+
-bindsym XF86AudioLowerVolume exec amixer set Master 5%-
-
-# Backlit
+client.focused          #4c566a #4c566a #4c566a #4c566a #4c566a
+client.focused_inactive #4c566a #4c566a #4c566a #4c566a #4c566a
+client.unfocused        #2e3440 #2e3440 #2e3440 #2e3440 #2e3440 
+client.urgent           #ebcb8b #ebcb8b #ebcb8b #ebcb8b #ebcb8b
+client.placeholder      #4c566a #4c566a #4c566a #4c566a #4c566a
+ 
+# backlight
 bindsym XF86MonBrightnessUp exec xbacklight -inc 5
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 
-# Touchpad
-exec synclient TouchpadOff=1
+# rofi 
+bindsym $mod+d exec rofi -show run -config ~/.config/rofi/config
 
-# compton 
-exec compton --config /home/patryk/.config/compton/compton.conf
-bindsym XF86Display exec killall -9 compton && compton --config /home/patryk/.config/compton/compton.conf && feh --bg-scale /home/patryk/Obrazy/wallp.jpg
+# redshif
+exec --no-startup-id redshift -l 21:52
 
-# Background
-exec feh --bg-scale Obrazy/wallp.jpg
+# picom 
+exec --no-startup-id picom --config /home/patryk/.config/picom/picom.conf
 
-# Keymap
-exec setxkbmap pl
+# audio 
+bindsym XF86AudioMute exec amixer set Master toggle
+bindsym XF86AudioMicMute exec amixer set Capture toggle
+bindsym XF86AudioRaiseVolume exec amixer set Master 1%+
+bindsym XF86AudioLowerVolume exec amixer set Master 1%-
 
-# Lockscreen
-bindsym XF86ScreenSaver exec i3lock-fancy -p -- scrot -z
-exec --no-startup-id xss-lock -- i3lock-fancy -p -- scrot -z
+# keymap
+exec --no-startup-id setxkbmap pl
 
-# Screen layout
-bindsym $mod+u exec ./.config/screenlayout/top.sh
-bindsym $mod+i exec ./.config/screenlayout/single.sh
+# background 
+exec --no-startup-id feh --bg-scale /home/patryk/Tapety/wall3.jpg
+
+# screen layout
+bindsym XF86Display exec /home/patryk/.screenlayout/toggle.sh
+
+# screenshot
+bindsym Print exec gnome-screenshot -acf /tmp/test && cat /tmp/test | xclip -i -selection clipboard -target image/png

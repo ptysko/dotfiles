@@ -1,17 +1,9 @@
-# i3status configuration file.
-# see "man i3status" for documentation.
-
-# It is important that this file is edited as UTF-8.
-# The following line should contain a sharp s:
-# ß
-# If the above line is not correctly displayed, fix your editor first!
-
 general {
-        colors = true
-        interval = 1
-	color_good = "#95C7AE"
-	color_degraded = "#C7AE95"
-	color_bad = "#C795AE"
+	colors = true
+	interval = 1
+	color_good = "#8fbcbb"
+	color_degraded = "#88c0d0"
+	color_bad = "#81a1c1"
 }
 
 order += "volume master"
