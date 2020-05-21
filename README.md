@@ -1,3 +1,3 @@
-i3gaps | compton | termite
+i3gaps | picom | termite
 
 ![scrot.jpeg](scrot.jpeg)
