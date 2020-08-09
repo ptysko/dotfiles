@@ -6,7 +6,7 @@
 #cell_width_scale = 1.0
 #clickable_url = true
 #dynamic_title = true
-font = Source Code Pro 10
+font = Monospace 9
 #fullscreen = true
 #icon_name = terminal
 #mouse_autohide = false
@@ -46,7 +46,7 @@ cursor_foreground = #2e3440
 
 foreground = #d8dee9
 foreground_bold = #d8dee9
-background = rgba(46, 52, 64, 0.8)
+background = #2e3440
 
 highlight = #4c566a
 
