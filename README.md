@@ -1,3 +1,11 @@
-i3gaps | picom | termite
+# my dotfiles
 
-![scrot.jpeg](scrot.jpeg)
+colletion of my configuration files
+
+* wm: i3-gaps
+* status: i3status
+* terminal: termite
+* compositor: picom
+* lockscreen: betterlockscreen
+
+![scrot.jpeg](scrot.png)
