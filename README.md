@@ -8,4 +8,8 @@ colletion of my configuration files
 * compositor: picom
 * lockscreen: betterlockscreen
 
-![scrot.jpeg](scrot.png)
+## neofetch
+![ss1.png](ss1.png)
+
+## busy
+![ss2.png](ss2.png)
